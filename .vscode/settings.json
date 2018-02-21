@@ -1,0 +1,16 @@
+{
+  "files.autoSave": "off",
+  "git.enabled": true,
+  "[javascript]": {
+      "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  "[css]": {
+    "editor.formatOnSave": true
+  }
+}
