@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./App.css";
+import SearchBar from "./components/SearchBar";
 
 const logo = require("./logo.svg");
 
@@ -15,6 +16,7 @@ class App extends React.Component {
           Airbnb Book unique <a href="/sitemaps/v2">homes</a> and experiences
           all over the world.
         </p>
+        <SearchBar />
       </div>
     );
   }
