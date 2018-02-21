@@ -13,3 +13,10 @@ it("should have ‘where’ field", () => {
   expect(firstFieldset.find("h1").text()).toEqual("Where");
   expect(firstFieldset.find("input[type='text']").length).toEqual(1);
 });
+
+it("should have ‘when’ field", () => {
+  const wrapper = shallow<Props>(<SearchBar />);
+  const secondFieldset = wrapper.find("fieldset").at(1);
+  expect(secondFieldset.find("h1").text()).toEqual("When");
+  expect(secondFieldset.find("input[type='text']").length).toEqual(1);
+});

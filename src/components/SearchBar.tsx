@@ -11,6 +11,7 @@ function SearchBar({  }: Props) {
       </fieldset>
       <fieldset>
         <h1>When</h1>
+        <input type="text" name="when" placeholder="Anytime" />
       </fieldset>
       <fieldset>
         <h1>Guests</h1>
