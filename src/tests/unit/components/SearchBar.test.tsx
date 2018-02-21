@@ -20,3 +20,12 @@ it("should have ‘when’ field", () => {
   expect(secondFieldset.find("h1").text()).toEqual("When");
   expect(secondFieldset.find("input[type='text']").length).toEqual(1);
 });
+
+it("should have ‘guests’ field", () => {
+  const wrapper = shallow<Props>(<SearchBar />);
+  const thirdFieldset = wrapper.find("fieldset").at(2);
+  expect(thirdFieldset.find("h1").text()).toEqual("Guests");
+  expect(thirdFieldset.find("select").length).toEqual(1);
+  // have 16 <option> elements 🐘
+  expect(thirdFieldset.find("option").length).toEqual(16);
+});
