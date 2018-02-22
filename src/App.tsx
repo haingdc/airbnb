@@ -5,6 +5,11 @@ import SearchBar from "./components/SearchBar";
 const logo = require("./logo.svg");
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.searchLocation = this.searchLocation.bind(this);
+  }
+
   public render() {
     return (
       <div className="App">

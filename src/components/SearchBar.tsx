@@ -16,9 +16,10 @@ class SearchBar extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { where: "", guests: 1 };
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  handleOnSubmit(e: React.FormEvent<HTMLInputElement>) {
+  handleOnClick(e: React.FormEvent<HTMLInputElement>) {
     e.preventDefault();
     const { where, when, guests } = this.state;
     this.props.handleSearchLocation(where, guests, when);
@@ -57,7 +58,7 @@ class SearchBar extends React.Component<Props, State> {
           </select>
         </fieldset>
         <fieldset>
-          <input type="submit" value="Search" onSubmit={this.handleOnSubmit} />
+          <input type="submit" value="Search" onClick={this.handleOnClick} />
         </fieldset>
       </div>
     );
