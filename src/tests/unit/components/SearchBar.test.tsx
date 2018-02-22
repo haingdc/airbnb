@@ -45,3 +45,16 @@ it("should set initial state", () => {
   expect(wrapper.state().where).toEqual("");
   expect(wrapper.state().guests).toEqual(1);
 });
+
+it("should accept input", () => {
+  const wrapper = Enzyme.mount<Props, State>(<SearchBar {...props} />);
+  const whereInput = wrapper.find("input[name='where']");
+  whereInput.simulate("change", { target: { value: "Resin" } });
+  expect(wrapper.state("where")).toEqual("Resin");
+  expect(
+    (whereInput.instance() as React.DetailedHTMLProps<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    >).value,
+  ).toEqual("Resin");
+});

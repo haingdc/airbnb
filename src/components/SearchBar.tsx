@@ -17,20 +17,22 @@ class SearchBar extends React.Component<Props, State> {
     super(props);
     this.state = { where: "", guests: 1 };
     this.handleOnClick = this.handleOnClick.bind(this);
-  }
-
-  handleOnClick(e: React.FormEvent<HTMLInputElement>) {
-    e.preventDefault();
-    const { where, when, guests } = this.state;
-    this.props.handleSearchLocation(where, guests, when);
+    this.setText = this.setText.bind(this);
   }
 
   render() {
+    const { where } = this.state;
     return (
       <div className="Search-bar">
         <fieldset>
           <h1>Where</h1>
-          <input type="text" name="where" placeholder="Anywhere" />
+          <input
+            type="text"
+            name="where"
+            placeholder="Anywhere"
+            onChange={this.setText}
+            value={where}
+          />
         </fieldset>
         <fieldset>
           <h1>When</h1>
@@ -62,6 +64,16 @@ class SearchBar extends React.Component<Props, State> {
         </fieldset>
       </div>
     );
+  }
+
+  private handleOnClick(e: React.FormEvent<HTMLInputElement>) {
+    e.preventDefault();
+    const { where, when, guests } = this.state;
+    this.props.handleSearchLocation(where, guests, when);
+  }
+
+  private setText(evt: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ where: evt.target.value });
   }
 }
 
