@@ -22,7 +22,7 @@ it("should have ‘when’ field", () => {
   const wrapper = shallow<Props>(<SearchBar {...props} />);
   const secondFieldset = wrapper.find("fieldset").at(1);
   expect(secondFieldset.find("h1").text()).toEqual("When");
-  expect(secondFieldset.find("input[type='text']").length).toEqual(1);
+  expect(secondFieldset.find("input[type='date']").length).toEqual(1);
 });
 
 it("should have ‘guests’ field", () => {
@@ -46,7 +46,7 @@ it("should set initial state", () => {
   expect(wrapper.state().guests).toEqual(1);
 });
 
-it("should accept input", () => {
+it("should accept ‘where’ input", () => {
   const wrapper = Enzyme.mount<Props, State>(<SearchBar {...props} />);
   const whereInput = wrapper.find("input[name='where']");
   whereInput.simulate("change", { target: { value: "Resin" } });
@@ -57,4 +57,11 @@ it("should accept input", () => {
       HTMLInputElement
     >).value,
   ).toEqual("Resin");
+});
+
+it("should accept ‘when’ input", () => {
+  const wrapper = Enzyme.mount<Props, State>(<SearchBar {...props} />);
+  const whenInput = wrapper.find("input[name='when']");
+  whenInput.simulate("change", { target: { value: "2017-06-01" } });
+  expect(wrapper.state("when")).toEqual(new Date("2017-06-01"));
 });

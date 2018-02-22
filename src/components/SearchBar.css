@@ -30,12 +30,14 @@
 }
 
 .Search-bar input[type="text"],
+.Search-bar input[type="date"],
 .Search-bar select {
   padding: 7px 6px;
   width: 11rem;
 }
 
 .Search-bar input[type="text"]:focus,
+.Search-bar input[type="date"]:focus,
 .Search-bar select:focus {
   transition: 0.4s;
   border: 2px solid #3399ff;

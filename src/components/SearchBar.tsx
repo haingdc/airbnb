@@ -18,6 +18,7 @@ class SearchBar extends React.Component<Props, State> {
     this.state = { where: "", guests: 1 };
     this.handleOnClick = this.handleOnClick.bind(this);
     this.setText = this.setText.bind(this);
+    this.setDate = this.setDate.bind(this);
   }
 
   render() {
@@ -36,7 +37,12 @@ class SearchBar extends React.Component<Props, State> {
         </fieldset>
         <fieldset>
           <h1>When</h1>
-          <input type="text" name="when" placeholder="Anytime" />
+          <input
+            type="date"
+            name="when"
+            placeholder="Anytime"
+            onChange={this.setDate}
+          />
         </fieldset>
         <fieldset>
           <h1>Guests</h1>
@@ -74,6 +80,10 @@ class SearchBar extends React.Component<Props, State> {
 
   private setText(evt: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ where: evt.target.value });
+  }
+
+  private setDate(evt: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({ when: new Date(evt.target.value) });
   }
 }
 
