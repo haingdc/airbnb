@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./SearchBar.css";
 
 export interface Props {}
 
@@ -15,7 +16,6 @@ class SearchBar extends React.Component<Props, State> {
   }
 
   render() {
-    console.log(`SearchBar.state`, this.state);
     return (
       <div className="Search-bar">
         <fieldset>
@@ -47,7 +47,9 @@ class SearchBar extends React.Component<Props, State> {
             <option value="16">16 guests</option>
           </select>
         </fieldset>
-        <input type="text" />
+        <fieldset>
+          <input type="submit" value="Search" />
+        </fieldset>
       </div>
     );
   }

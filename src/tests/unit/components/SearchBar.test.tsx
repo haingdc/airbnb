@@ -30,6 +30,12 @@ it("should have ‘guests’ field", () => {
   expect(thirdFieldset.find("option").length).toEqual(16);
 });
 
+it("should have ‘search’ button", () => {
+  const wrapper = shallow<Props, State>(<SearchBar />);
+  const fourthFieldset = wrapper.find("fieldset").at(3);
+  expect(fourthFieldset.find("input[type='submit']").length).toEqual(1);
+});
+
 it("should set initial state", () => {
   const wrapper = shallow<Props, State>(<SearchBar />);
   expect(wrapper.state().where).toEqual("");
