@@ -1,7 +1,10 @@
 import * as React from "react";
 import "./SearchBar.css";
+import { SearchLocationFunc } from "../App";
 
-export interface Props {}
+export interface Props {
+  handleSearchLocation: SearchLocationFunc;
+}
 
 export interface State {
   where: string;
@@ -13,6 +16,12 @@ class SearchBar extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { where: "", guests: 1 };
+  }
+
+  handleOnSubmit(e: React.FormEvent<HTMLInputElement>) {
+    e.preventDefault();
+    const { where, when, guests } = this.state;
+    this.props.handleSearchLocation(where, guests, when);
   }
 
   render() {
@@ -48,7 +57,7 @@ class SearchBar extends React.Component<Props, State> {
           </select>
         </fieldset>
         <fieldset>
-          <input type="submit" value="Search" />
+          <input type="submit" value="Search" onSubmit={this.handleOnSubmit} />
         </fieldset>
       </div>
     );

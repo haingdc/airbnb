@@ -5,7 +5,7 @@ import SearchBar from "./components/SearchBar";
 const logo = require("./logo.svg");
 
 class App extends React.Component {
-  render() {
+  public render() {
     return (
       <div className="App">
         <header className="App-header">
@@ -16,10 +16,18 @@ class App extends React.Component {
           Airbnb Book unique <a href="/sitemaps/v2">homes</a> and experiences
           all over the world.
         </p>
-        <SearchBar />
+        <SearchBar handleSearchLocation={this.searchLocation} />
       </div>
     );
+  }
+
+  private searchLocation(where: string, guests: number, when?: Date) {
+    // do sth
   }
 }
 
 export default App;
+
+export interface SearchLocationFunc {
+  (where: string, guests: number, when?: Date): void;
+}

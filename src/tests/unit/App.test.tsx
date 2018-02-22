@@ -12,3 +12,9 @@ it("should have SearchBar", () => {
   const wrapper = shallow(<App />);
   expect(wrapper.find(SearchBar).length).toEqual(1);
 });
+
+it("passes searchLocation to SearchBar", () => {
+  const wrapper = shallow(<App />);
+  const searchBar = wrapper.find(SearchBar);
+  expect(searchBar.props()).toHaveProperty("handleSearchLocation");
+});
