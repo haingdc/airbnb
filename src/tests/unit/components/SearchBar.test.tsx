@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Enzyme from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
-import SearchBar, { Props } from "../../../components/SearchBar";
+import SearchBar, { Props, State } from "../../../components/SearchBar";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -28,4 +28,10 @@ it("should have ‘guests’ field", () => {
   expect(thirdFieldset.find("select").length).toEqual(1);
   // have 16 <option> elements 🐘
   expect(thirdFieldset.find("option").length).toEqual(16);
+});
+
+it("should set initial state", () => {
+  const wrapper = shallow<Props, State>(<SearchBar />);
+  expect(wrapper.state().where).toEqual("");
+  expect(wrapper.state().guests).toEqual(1);
 });
