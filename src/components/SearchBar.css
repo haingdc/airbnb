@@ -1,0 +1,59 @@
+.Search-bar {
+  display: flex;
+  flex-flow: row;
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  padding: 0px 15px;
+}
+
+.Search-bar fieldset {
+  border: none;
+  text-align: left;
+  flex-grow: 1;
+  width: 30%;
+}
+
+.Search-bar fieldset:nth-child(4) {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Search-bar fieldset h1 {
+  color: #3a3a3a;
+  font-size: 0.9em;
+  font-weight: 400;
+  line-height: 20px;
+  margin-top: 5px;
+  margin-bottom: 4px;
+}
+
+.Search-bar input[type="text"],
+.Search-bar select {
+  padding: 7px 6px;
+  width: 11rem;
+}
+
+.Search-bar input[type="text"]:focus,
+.Search-bar select:focus {
+  transition: 0.4s;
+  border: 2px solid #3399ff;
+}
+
+.Search-bar select {
+  width: 11rem;
+}
+
+.Search-bar input[type="submit"] {
+  background-color: #fe4b57;
+  color: #fff;
+  border: none;
+  outline: 0 !important;
+  padding: 10px 22px;
+  border-radius: 0.1rem;
+}
+
+.Search-bar input[type="submit"]:active {
+  background-color: #e64b56;
+}
