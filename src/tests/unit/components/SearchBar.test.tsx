@@ -59,6 +59,17 @@ it("should accept ‘where’ input", () => {
   ).toEqual("Resin");
 });
 
+it("initial value should be empty string to ‘when’ input", () => {
+  const wrapper = Enzyme.mount<Props, State>(<SearchBar {...props} />);
+  const whenInput = wrapper.find("input[name='when']");
+  expect(
+    (whenInput.instance() as React.DetailedHTMLProps<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    >).value,
+  ).toEqual("");
+});
+
 it("should accept ‘when’ input", () => {
   const wrapper = Enzyme.mount<Props, State>(<SearchBar {...props} />);
   const whenInput = wrapper.find("input[name='when']");

@@ -2,6 +2,7 @@ import * as React from "react";
 import "./SearchBar.css";
 import { SearchLocationFunc } from "../App";
 import * as DateFNS from "date-fns";
+import * as Constants from "../constants";
 
 export interface Props {
   handleSearchLocation: SearchLocationFunc;
@@ -53,7 +54,7 @@ class SearchBar extends React.Component<Props, State> {
               name="when"
               placeholder="Anytime"
               onChange={this.setDate}
-              value={"2017-06-01"}
+              value={Constants.EMPTY_STRING}
             />
           )}
         </fieldset>
