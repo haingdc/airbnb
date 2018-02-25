@@ -1,5 +1,6 @@
 import * as React from "react";
 import Category from "../interfaces/Category";
+import "./ExploreBar.css";
 
 export interface Props {
   categories: Category[];
@@ -7,18 +8,18 @@ export interface Props {
 
 function ExploreBar({ categories }: Props) {
   const items = categories.map((el, id) => {
+    var active = "";
+    if (id === 0) {
+      active = "active-category";
+    }
     return (
-      <li key={id}>
+      <div key={id} className={"category-item " + active}>
         <a href={"/" + el.path}>{el.name}</a>
-      </li>
+      </div>
     );
   });
 
-  return (
-    <section>
-      <ul>{items}</ul>
-    </section>
-  );
+  return <section className="categories">{items}</section>;
 }
 
 export default ExploreBar;
