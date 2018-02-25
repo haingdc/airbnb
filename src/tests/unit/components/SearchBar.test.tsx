@@ -71,3 +71,16 @@ it("should accept ‘when’ input", () => {
     >).value,
   ).toEqual("2017-06-30");
 });
+
+it("should accept ‘guests’ select", () => {
+  const wrapper = Enzyme.mount<Props, State>(<SearchBar {...props} />);
+  const select = wrapper.find("select");
+  select.simulate("change", { target: { value: "4" } });
+  expect(wrapper.state("guests")).toEqual(4);
+  expect(
+    (select.instance() as React.DetailedHTMLProps<
+      React.SelectHTMLAttributes<HTMLSelectElement>,
+      HTMLSelectElement
+    >).value,
+  ).toEqual(4 + "");
+});

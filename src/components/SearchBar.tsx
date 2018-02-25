@@ -20,10 +20,11 @@ class SearchBar extends React.Component<Props, State> {
     this.handleOnClick = this.handleOnClick.bind(this);
     this.setText = this.setText.bind(this);
     this.setDate = this.setDate.bind(this);
+    this.setGuests = this.setGuests.bind(this);
   }
 
   render() {
-    const { where, when } = this.state;
+    const { where, when, guests } = this.state;
     return (
       <div className="Search-bar">
         <fieldset>
@@ -58,7 +59,7 @@ class SearchBar extends React.Component<Props, State> {
         </fieldset>
         <fieldset>
           <h1>Guests</h1>
-          <select name="guests">
+          <select name="guests" onChange={this.setGuests} value={guests}>
             <option value="1">1 guest</option>
             <option value="2">2 guests</option>
             <option value="3">3 guests</option>
@@ -96,6 +97,10 @@ class SearchBar extends React.Component<Props, State> {
 
   private setDate(evt: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ when: new Date(evt.target.value) });
+  }
+
+  private setGuests(evt: React.ChangeEvent<HTMLSelectElement>) {
+    this.setState({ guests: Number(evt.target.value) });
   }
 }
 
