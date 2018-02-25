@@ -18,15 +18,15 @@ const twoCategory: Category[] = [
 
 it("should render one category", () => {
   const wrapper = shallow(<ExploreBar categories={oneCategory} />);
-  expect(wrapper.find("li").length).toEqual(1);
+  expect(wrapper.find(".category-item").length).toEqual(1);
 });
 
 it("should render no-category", () => {
   const wrapper = shallow(<ExploreBar categories={EMPTY_ARRAY} />);
-  expect(wrapper.find("li").length).toEqual(0);
+  expect(wrapper.find(".category-item").length).toEqual(0);
 });
 
 it("should render two category", () => {
   const wrapper = shallow(<ExploreBar categories={twoCategory} />);
-  expect(wrapper.find("li").length).toEqual(2);
+  expect(wrapper.find(".category-item").length).toEqual(2);
 });
