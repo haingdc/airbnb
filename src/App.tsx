@@ -1,16 +1,31 @@
 import * as React from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar";
+import ExploreBar from "./components/ExploreBar";
+import Category from "./interfaces/Category";
 
 const logo = require("./logo.svg");
 
-class App extends React.Component {
+interface State {
+  categories: Category[];
+}
+
+class App extends React.Component<{}, State> {
   constructor(props) {
     super(props);
     this.searchLocation = this.searchLocation.bind(this);
+    this.state = {
+      categories: [
+        { name: "for you", path: "for_path" },
+        { name: "homes", path: "homes" },
+        { name: "experiences", path: "experiences" },
+        { name: "places", path: "places" },
+      ],
+    };
   }
 
   public render() {
+    const { categories } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -22,6 +37,7 @@ class App extends React.Component {
           all over the world.
         </p>
         <SearchBar handleSearchLocation={this.searchLocation} />
+        <ExploreBar categories={categories} />
       </div>
     );
   }
