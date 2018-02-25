@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./SearchBar.css";
 import { SearchLocationFunc } from "../App";
+import * as DateFNS from "date-fns";
 
 export interface Props {
   handleSearchLocation: SearchLocationFunc;
@@ -22,7 +23,7 @@ class SearchBar extends React.Component<Props, State> {
   }
 
   render() {
-    const { where } = this.state;
+    const { where, when } = this.state;
     return (
       <div className="Search-bar">
         <fieldset>
@@ -37,12 +38,23 @@ class SearchBar extends React.Component<Props, State> {
         </fieldset>
         <fieldset>
           <h1>When</h1>
-          <input
-            type="date"
-            name="when"
-            placeholder="Anytime"
-            onChange={this.setDate}
-          />
+          {when ? (
+            <input
+              type="date"
+              name="when"
+              placeholder="Anytime"
+              onChange={this.setDate}
+              value={DateFNS.format(when, "YYYY-MM-DD")}
+            />
+          ) : (
+            <input
+              type="date"
+              name="when"
+              placeholder="Anytime"
+              onChange={this.setDate}
+              value={"2017-06-01"}
+            />
+          )}
         </fieldset>
         <fieldset>
           <h1>Guests</h1>

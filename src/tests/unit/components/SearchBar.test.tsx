@@ -62,6 +62,12 @@ it("should accept ‘where’ input", () => {
 it("should accept ‘when’ input", () => {
   const wrapper = Enzyme.mount<Props, State>(<SearchBar {...props} />);
   const whenInput = wrapper.find("input[name='when']");
-  whenInput.simulate("change", { target: { value: "2017-06-01" } });
-  expect(wrapper.state("when")).toEqual(new Date("2017-06-01"));
+  whenInput.simulate("change", { target: { value: "2017-06-30" } });
+  expect(wrapper.state("when")).toEqual(new Date("2017-06-30"));
+  expect(
+    (whenInput.instance() as React.DetailedHTMLProps<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    >).value,
+  ).toEqual("2017-06-30");
 });
