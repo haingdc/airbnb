@@ -6,7 +6,19 @@ export interface Props {
 }
 
 function ExploreBar({ categories }: Props) {
-  return <section>ExploreBar</section>;
+  const items = categories.map((el, id) => {
+    return (
+      <li key={id}>
+        <a href={"/" + el.path}>{el.name}</a>
+      </li>
+    );
+  });
+
+  return (
+    <section>
+      <ul>{items}</ul>
+    </section>
+  );
 }
 
 export default ExploreBar;

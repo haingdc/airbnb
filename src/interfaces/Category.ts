@@ -1,4 +1,5 @@
-export default interface Category {
+interface Category {
   name: string;
   path: string;
-};
+}
+export default Category;
