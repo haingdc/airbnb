@@ -15,3 +15,8 @@ it("should render one category", () => {
   const wrapper = shallow(<ExploreBar categories={oneCategory} />);
   expect(wrapper.find("li").length).toEqual(1);
 });
+
+it("should render no-category", () => {
+  const wrapper = shallow(<ExploreBar categories={EMPTY_ARRAY} />);
+  expect(wrapper.find("li").length).toEqual(0);
+});
