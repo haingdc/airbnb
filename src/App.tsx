@@ -3,6 +3,7 @@ import "./App.css";
 import SearchBar from "./components/SearchBar";
 import ExploreBar from "./components/ExploreBar";
 import Category from "./interfaces/Category";
+import Carousel from "./components/Carousel";
 
 const logo = require("./logo.svg");
 
@@ -38,6 +39,7 @@ class App extends React.Component<{}, State> {
         </p>
         <SearchBar handleSearchLocation={this.searchLocation} />
         <ExploreBar categories={categories} />
+        <Carousel />
       </div>
     );
   }

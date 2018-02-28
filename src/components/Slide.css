@@ -1,0 +1,12 @@
+.slide {
+  display: inline-block;
+  vertical-align: top;
+  border-right: 1px solid black;
+  height: 50px;
+  width: 120px;
+  padding: 5px;
+}
+
+.slide:last-child {
+  border-right: none;
+}
