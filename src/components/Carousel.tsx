@@ -11,10 +11,17 @@ class Carousel extends React.Component {
     ));
   }
 
+  handleLeftNav(evt: React.MouseEvent<HTMLButtonElement>) {}
+
   render() {
     return (
       <div className="carousel-container">
-        <button className="carousel-nav carousel-left-nav">&#60;</button>
+        <button
+          className="carousel-nav carousel-left-nav"
+          onClick={this.handleLeftNav}
+        >
+          &#60;
+        </button>
         <div className="carousel-viewport">{this.renderSlides()}</div>
         <button className="carousel-nav carousel-right-nav">&#62;</button>
       </div>

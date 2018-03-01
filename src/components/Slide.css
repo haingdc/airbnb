@@ -5,6 +5,7 @@
   height: 50px;
   width: 120px;
   padding: 5px;
+  white-space: normal;
 }
 
 .slide:last-child {
