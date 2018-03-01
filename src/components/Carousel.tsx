@@ -5,13 +5,33 @@ import Slide from "./Slide";
 import "./Carousel.css";
 
 class Carousel extends React.Component {
+  private scrollLeft: HTMLDivElement;
+  constructor(props) {
+    super(props);
+    this.handleLeftNav = this.handleLeftNav.bind(this);
+    this.handleRightNav = this.handleRightNav.bind(this);
+  }
   renderSlides() {
     return Data.locations.map(el => (
       <Slide name={el.name} key={el.abbreviation} />
     ));
   }
 
-  handleLeftNav(evt: React.MouseEvent<HTMLButtonElement>) {}
+  handleLeftNav(evt: React.MouseEvent<HTMLButtonElement>) {
+    console.log("left click", this);
+  }
+
+  handleRightNav(evt: React.MouseEvent<HTMLButtonElement>) {
+    console.log("right click", this);
+    const { carouselViewport } = this.refs;
+    var numOfSlidesToScroll = 1.5;
+    var widthOfSlide = 120;
+    var newPos =
+      // tslint:disable-next-line:no-any
+      (carouselViewport as any).scrollLeft + widthOfSlide * numOfSlidesToScroll;
+    // tslint:disable-next-line:no-any
+    (carouselViewport as any).scrollLeft = newPos;
+  }
 
   render() {
     return (
@@ -22,8 +42,16 @@ class Carousel extends React.Component {
         >
           &#60;
         </button>
-        <div className="carousel-viewport">{this.renderSlides()}</div>
-        <button className="carousel-nav carousel-right-nav">&#62;</button>
+        {/* tslint:disable-next-line:jsx-no-string-ref */}
+        <div className="carousel-viewport" ref="carouselViewport">
+          {this.renderSlides()}
+        </div>
+        <button
+          className="carousel-nav carousel-right-nav"
+          onClick={this.handleRightNav}
+        >
+          &#62;
+        </button>
       </div>
     );
   }
