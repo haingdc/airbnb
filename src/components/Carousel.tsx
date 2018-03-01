@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Data from "../data";
 import Slide from "./Slide";
 import "./Carousel.css";
+import * as scrollToAnimate from "./scrollToAnimate";
 
 class Carousel extends React.Component {
   private scrollLeft: HTMLDivElement;
@@ -31,6 +32,8 @@ class Carousel extends React.Component {
       (carouselViewport as any).scrollLeft + widthOfSlide * numOfSlidesToScroll;
     // tslint:disable-next-line:no-any
     (carouselViewport as any).scrollLeft = newPos;
+
+    scrollToAnimate(carouselViewport, newPos, 200, "scrollLeft");
   }
 
   render() {

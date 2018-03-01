@@ -1,12 +1,6 @@
 {
     "extends": ["tslint-react"],
     "rules": {
-        "align": [
-            true,
-            "parameters",
-            "arguments",
-            "statements"
-        ],
         "ban": false,
         "class-name": true,
         "comment-format": [
@@ -96,6 +90,12 @@
             "parameter",
             "property-declaration"
         ],
-        "no-shadowed-variable": false
+        "no-shadowed-variable": false,
+        "align": [
+            false,
+            "parameters",
+            "arguments",
+            "statements"
+        ]
     }
 }
