@@ -3,10 +3,13 @@ import * as React from "react";
 import * as Data from "../data";
 import Slide from "./Slide";
 import "./Carousel.css";
-import * as scrollToAnimate from "./scrollToAnimate";
+import scrollToAnimate from "./scrollToAnimate";
 
 class Carousel extends React.Component {
-  private scrollLeft: HTMLDivElement;
+  refs: {
+    carouselViewport: HTMLDivElement;
+  };
+
   constructor(props) {
     super(props);
     this.handleLeftNav = this.handleLeftNav.bind(this);
@@ -27,13 +30,15 @@ class Carousel extends React.Component {
     const { carouselViewport } = this.refs;
     var numOfSlidesToScroll = 1.5;
     var widthOfSlide = 120;
-    var newPos =
-      // tslint:disable-next-line:no-any
-      (carouselViewport as any).scrollLeft + widthOfSlide * numOfSlidesToScroll;
-    // tslint:disable-next-line:no-any
-    (carouselViewport as any).scrollLeft = newPos;
+    // var new Pos = carouselViewport.scrollLeft + widthOfSlide * numOfSlidesToScroll;
+    var newPos = carouselViewport.scrollLeft + carouselViewport.offsetWidth;
+    var timeToMoveOneSlide = 200;
+    var totalTimeToMove = Math.min(
+      numOfSlidesToScroll * timeToMoveOneSlide,
+      400,
+    );
 
-    scrollToAnimate(carouselViewport, newPos, 200, "scrollLeft");
+    scrollToAnimate(carouselViewport, newPos, totalTimeToMove, "scrollLeft");
   }
 
   render() {

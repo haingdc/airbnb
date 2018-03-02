@@ -1,8 +1,10 @@
-function scrollTo(
-  element: HTMLElement,
+import { ReactInstance } from "react";
+
+export default function scrollTo(
+  element: ReactInstance,
   to: number,
   duration: number,
-  scrollDirection: number,
+  scrollDirection: string,
 ) {
   var start = element[scrollDirection],
     change = to - start,
@@ -36,5 +38,3 @@ function easeInOut(
   currentTime -= 1;
   return -change / 2 * (currentTime * (currentTime - 2) - 1) + start;
 }
-
-export default scrollTo;
