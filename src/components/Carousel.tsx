@@ -5,7 +5,11 @@ import Slide from "./Slide";
 import "./Carousel.css";
 import scrollToAnimate from "./scrollToAnimate";
 
-class Carousel extends React.Component {
+interface State {
+  numOfSlidesToScroll: number;
+}
+
+class Carousel extends React.Component<{}, State> {
   refs: {
     carouselViewport: HTMLDivElement;
   };
@@ -13,32 +17,19 @@ class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.handleLeftNav = this.handleLeftNav.bind(this);
+    this.onResize = this.onResize.bind(this);
     this.handleRightNav = this.handleRightNav.bind(this);
-  }
-  renderSlides() {
-    return Data.locations.map(el => (
-      <Slide name={el.name} key={el.abbreviation} />
-    ));
+    this.state = {
+      numOfSlidesToScroll: 4,
+    };
   }
 
-  handleLeftNav(evt: React.MouseEvent<HTMLButtonElement>) {
-    console.log("left click", this);
+  componentDidMount() {
+    window.addEventListener("resize", this.onResize);
   }
 
-  handleRightNav(evt: React.MouseEvent<HTMLButtonElement>) {
-    console.log("right click", this);
-    const { carouselViewport } = this.refs;
-    var numOfSlidesToScroll = 1.5;
-    var widthOfSlide = 120;
-    // var new Pos = carouselViewport.scrollLeft + widthOfSlide * numOfSlidesToScroll;
-    var newPos = carouselViewport.scrollLeft + carouselViewport.offsetWidth;
-    var timeToMoveOneSlide = 200;
-    var totalTimeToMove = Math.min(
-      numOfSlidesToScroll * timeToMoveOneSlide,
-      400,
-    );
-
-    scrollToAnimate(carouselViewport, newPos, totalTimeToMove, "scrollLeft");
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.onResize);
   }
 
   render() {
@@ -62,6 +53,60 @@ class Carousel extends React.Component {
         </button>
       </div>
     );
+  }
+
+  private onResize() {
+    console.log("resizing");
+  }
+
+  private renderSlides() {
+    return Data.locations.map(el => (
+      <Slide name={el.name} key={el.abbreviation} />
+    ));
+  }
+
+  private handleLeftNav(evt: React.MouseEvent<HTMLButtonElement>) {
+    console.log("left click", this);
+    const { carouselViewport } = this.refs;
+    var numOfSlidesToScroll = this.state.numOfSlidesToScroll;
+    var widthOfSlide = 120;
+    var newPos =
+      carouselViewport.scrollLeft - widthOfSlide * numOfSlidesToScroll;
+    // var newPos = carouselViewport.scrollLeft + carouselViewport.offsetWidth;
+    var timeToMoveOneSlide = 200;
+    var totalTimeToMove = Math.min(
+      numOfSlidesToScroll * timeToMoveOneSlide,
+      400,
+    );
+
+    scrollToAnimate({
+      element: carouselViewport,
+      to: newPos,
+      duration: totalTimeToMove,
+      scrollDirection: "scrollLeft",
+    });
+  }
+
+  private handleRightNav(evt: React.MouseEvent<HTMLButtonElement>) {
+    console.log("right click", this);
+    const { carouselViewport } = this.refs;
+    var numOfSlidesToScroll = this.state.numOfSlidesToScroll;
+    var widthOfSlide = 120;
+    var newPos =
+      carouselViewport.scrollLeft + widthOfSlide * numOfSlidesToScroll;
+    // var newPos = carouselViewport.scrollLeft + carouselViewport.offsetWidth;
+    var timeToMoveOneSlide = 200;
+    var totalTimeToMove = Math.min(
+      numOfSlidesToScroll * timeToMoveOneSlide,
+      400,
+    );
+
+    scrollToAnimate({
+      element: carouselViewport,
+      to: newPos,
+      duration: totalTimeToMove,
+      scrollDirection: "scrollLeft",
+    });
   }
 }
 

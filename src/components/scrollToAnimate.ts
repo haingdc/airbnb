@@ -1,14 +1,15 @@
 import { ReactInstance } from "react";
 
-export default function scrollTo(
-  element: ReactInstance,
-  to: number,
-  duration: number,
-  scrollDirection: string,
-) {
+export default function scrollTo(params: {
+  element: ReactInstance;
+  to: number;
+  duration: number;
+  scrollDirection: string;
+}) {
+  const { element, to, duration, scrollDirection } = params;
   var start = element[scrollDirection],
     change = to - start,
-    increment = 20;
+    increment = 1000 / 60;
 
   var animateScroll = function(elapsedTime: number) {
     elapsedTime += increment;
@@ -16,13 +17,12 @@ export default function scrollTo(
     element[scrollDirection] = position;
 
     if (elapsedTime < duration) {
-      setTimeout(function() {
-        animateScroll(elapsedTime);
-      }, increment);
+      window.requestAnimationFrame(animateScroll.bind(null, elapsedTime));
     }
   };
 
-  animateScroll(0);
+  // animateScroll(0);
+  window.requestAnimationFrame(animateScroll.bind(null, 0));
 }
 
 function easeInOut(
